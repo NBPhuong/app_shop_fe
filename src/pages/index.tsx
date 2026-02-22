@@ -1,8 +1,12 @@
 'use client'
 import Head from 'next/head'
 import Button from '@mui/material/Button'
+import { useTheme } from '@emotion/react'
 
 export default function Home() {
+  const theme = useTheme()
+  console.log (theme)
+  
   return (
     <>
       <Head>
