@@ -1,8 +1,6 @@
 // ** Import Next
 import { NextPage } from 'next';
 import Image from 'next/image';
-import Link from 'next/link'
-
 
 //** React */
 import { useState } from 'react';
@@ -16,7 +14,9 @@ import {
   FormControlLabel,
   Typography,
   InputAdornment,
-  IconButton
+  IconButton,
+  Link,
+  useTheme
 } from '@mui/material'
 
 // ** Components
@@ -34,7 +34,9 @@ import { EMAIL_REG, PASSWORD_REG } from 'src/configs/regex';
 // ** Images
 import LoginDark from '/public/images/login-dark.png'
 import LoginLight from '/public/images/login-light.png'
-import { useTheme } from '@emotion/react';
+
+// ** Hooks
+import { useAuth } from 'src/hooks/useAuth';
 
 
 type TProps = {}
@@ -46,6 +48,8 @@ const LoginPage: NextPage<TProps> = () => {
   //Theme
   const theme = useTheme()
 
+ // ** context
+  const { login } = useAuth()
 
   const schema = yup.object()
     .shape({
@@ -67,8 +71,10 @@ const LoginPage: NextPage<TProps> = () => {
   })
 
   const onSubmit = (data: { email: string, password: string }) => {
-    console.log("data", { data, errors })
-
+    if (!Object.keys(errors)?.length) {
+      login({ ...data, rememberMe: isRemember })
+      console.log("data", { data, errors })
+    }
   }
 
 
@@ -221,10 +227,10 @@ const LoginPage: NextPage<TProps> = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
               <Typography>You_haven't_account</Typography>
               <Link
-                style={{
+                href="/register"
+                sx={{
                   color: theme.palette.primary.main
                 }}
-                href="/register"
               >
                 {"Register"}
               </Link>

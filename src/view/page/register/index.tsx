@@ -11,12 +11,11 @@ import { useState } from 'react';
 import {
   Box,
   Button,
-  Checkbox,
   CssBaseline,
-  FormControlLabel,
   Typography,
   InputAdornment,
-  IconButton
+  IconButton,
+  useTheme
 } from '@mui/material'
 
 // ** Components
@@ -34,7 +33,6 @@ import { EMAIL_REG, PASSWORD_REG } from 'src/configs/regex';
 // ** Images
 import RegisterDark from '/public/images/register-dark.png'
 import RegisterLight from '/public/images/register-light.png'
-import { useTheme } from '@emotion/react';
 
 
 type TProps = {}
