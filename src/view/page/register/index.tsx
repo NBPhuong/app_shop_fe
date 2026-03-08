@@ -79,7 +79,6 @@ const LoginPage: NextPage<TProps> = () => {
     handleSubmit,
     control,
     formState: { errors },
-    setError
   } = useForm({
     defaultValues,
     mode: 'onBlur',
