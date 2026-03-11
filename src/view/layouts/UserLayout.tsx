@@ -18,7 +18,7 @@ interface TProps {
   children?: React.ReactNode;
 }
 
-const UserLayout: NextPage<TProps> = ({ children }) => {
+const UserLayout: NextPage<TProps> = ({ }) => {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);

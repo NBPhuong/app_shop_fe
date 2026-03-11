@@ -1,18 +1,17 @@
-import path from "path";
 
 export const VerticalItems = [
   {
-    title: "Parent 1",
+    title: " System",
     icon: "ic:outline-more",
     path: "/",
     childrens: [
       {
-        title: "children 1 1",
+        title: "Product",
         icon: "ic:outline-more",
         path: "/",
         childrens: [
           {
-            title: "children 1 1 1",
+            title: "Product Type",
             icon: "ic:outline-more",
             path: "/"
           }
@@ -21,15 +20,8 @@ export const VerticalItems = [
     ]
   },
   {
-    title: "Parent 2",
+    title: "User",
     icon: "ic:outline-more",
     path: "/",
-    childrens: [
-      {
-        title: "children 2 1",
-        icon: "ic:outline-more",
-        path: "/",
-      }
-    ]
-  }
+   }
 ]
