@@ -1,24 +1,24 @@
 import * as React from 'react';
 
 //*MUI
-import { styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-
-//*Layout
-import { mainListItems,  secondaryListItems } from './listItem';
 
 //*Next
 import { NextPage } from 'next';
 
+//*Component
+import ListVerticalLayout from 'src/view/layouts/ListVerticalLayout';
+import IconifyIcon from 'src/components/Icon';
+
 const drawerWidth: number = 240;
 
 type TProps = {
-  open: boolean;
-  toggleDrawer: () => void;
+    open: boolean;
+    toggleDrawer: () => void;
 }
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -47,7 +47,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-const VerticalLayout:NextPage<TProps> = ({open, toggleDrawer}) => {
+const VerticalLayout: NextPage<TProps> = ({ open, toggleDrawer }) => {
       return (
         <Drawer variant="permanent" open={open}>
             <Toolbar
@@ -59,14 +59,11 @@ const VerticalLayout:NextPage<TProps> = ({open, toggleDrawer}) => {
                 }}
             >
                 <IconButton onClick={toggleDrawer}>
+                    <IconifyIcon icon="lsicon:left-outline" />
                 </IconButton>
             </Toolbar>
             <Divider />
-            <List component="nav">
-                {mainListItems}
-                <Divider sx={{ my: 1 }} />
-                {secondaryListItems}
-            </List>
+        <ListVerticalLayout children={undefined} />
         </Drawer>
 
     );
