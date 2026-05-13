@@ -14,10 +14,9 @@ import authConfig from 'src/configs/auth'
 import { AuthValuesType, LoginParams, ErrCallbackType, UserDataType } from './types'
 
 //* Services
-import { loginAuth } from 'src/services/auth'
+import { loginAuth, logoutAuth } from 'src/services/auth'
 import { CONFIG_API } from 'src/configs/api'
-import { removeLocalUserData, setLocalUserData } from './helpers/storage'
-import { set } from 'nprogress'
+import { removeLocalUserData } from './helpers/storage'
 
 // ** Defaults
 const defaultProvider: AuthValuesType = {
@@ -56,13 +55,13 @@ const AuthProvider = ({ children }: Props) => {
           })
           .then(async response => {
             setLoading(false)
-            setUser({ ...response.data.data})
+            setUser({ ...response.data.data })
           })
           .catch(() => {
             removeLocalUserData()
             setUser(null)
             setLoading(false)
-            if ( !router.pathname.includes('login')) {
+            if (!router.pathname.includes('login')) {
               router.replace('/login')
             }
           })
@@ -79,11 +78,12 @@ const AuthProvider = ({ children }: Props) => {
     loginAuth({ email: params.email, password: params.password })
       .then(async response => {
         params.rememberMe
-          ? setLocalUserData(JSON.stringify(response.data.user), response.data.accessToken, response.data.refreshToken)
+          ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
           : null
         const returnUrl = router.query.returnUrl
 
-        setUser({ ...response.data.user })
+        setUser({ ...response.data.userData })
+        params.rememberMe ? window.localStorage.setItem('userData', JSON.stringify(response.data.userData)) : null
 
         const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
 
@@ -96,9 +96,12 @@ const AuthProvider = ({ children }: Props) => {
   }
 
   const handleLogout = () => {
-    setUser(null)
-    removeLocalUserData()
-    router.push('/login')
+    logoutAuth().then((res) => {
+      setUser(null)
+      removeLocalUserData()
+      router.push('/login')
+    })
+
   }
 
   const values = {
