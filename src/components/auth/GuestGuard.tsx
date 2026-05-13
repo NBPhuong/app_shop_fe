@@ -40,7 +40,8 @@ const GuestGuard = (props: GuestGuardProps) => {
   if(authContext.loading) {
     return fallback
   }
-  return <>{children}</>
+  
+return <>{children}</>
 }
 
 export default GuestGuard

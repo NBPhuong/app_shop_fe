@@ -22,6 +22,7 @@ interface AuthGuardProps {
 const AuthGuard = (props: AuthGuardProps) => {
   // ** Props
   const { children, fallback } = props
+
   // ** auth
   const authContext = useAuth()
 
@@ -53,7 +54,8 @@ const AuthGuard = (props: AuthGuardProps) => {
   if(authContext.loading || authContext.user === null) {
     return fallback
   }
-  return <>{children}</>
+  
+return <>{children}</>
 }
 
 export default AuthGuard

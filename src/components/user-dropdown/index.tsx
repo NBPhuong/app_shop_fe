@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+
 // import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -21,11 +22,8 @@ import IconifyIcon from '../Icon';
 //** HOOKS */
 import { useAuth } from 'src/hooks/useAuth';
 
-type TProps = {
 
-}
-
-const UserDropdown = (props: TProps) => {
+const UserDropdown = () => {
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
