@@ -13,8 +13,10 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
 //*Component
-import IconifyIcon from 'src/components/Icon';
-import UserDropdown from 'src/components/user-dropdown';
+import Icon from 'src/components/Icon';
+import UserDropdown from 'src/view/layouts/components/user-dropdown';
+
+import ModeToggle from './components/mode-toggle';
 
 type TProps = {
   open: boolean;
@@ -68,7 +70,7 @@ const HorizontalLayout: NextPage<TProps> = ({ open, toggleDrawer, isHideMenu }) 
             ...(open && { display: 'none' }),
           }}
         >
-          <IconifyIcon icon="ic:round-menu" />
+          <Icon icon="ic:round-menu" />
         </IconButton>
         )}
        
@@ -81,6 +83,7 @@ const HorizontalLayout: NextPage<TProps> = ({ open, toggleDrawer, isHideMenu }) 
         >
           Dashboard
         </Typography>
+        <ModeToggle/>
         <UserDropdown/>
         {/* <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">

@@ -68,7 +68,7 @@ const AxiosInterceptor: FC<TAxiosInterceptor> = ({ children }) => {
                             }else{
                                 handleRedirectLogin(router, setUser)
                             }
-                        }).catch(e => {
+                        }).catch(() => {
                             handleRedirectLogin(router, setUser)
                         })
                     } else {
