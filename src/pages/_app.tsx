@@ -27,16 +27,31 @@ import { AuthProvider } from 'src/contexts/AuthContext'
 // ** Global css styles
 import 'src/styles/globals.scss'
 
+// ** redux
 import { store } from 'src/stores'
+
+//** Components */
 import GuestGuard from 'src/components/auth/GuestGuard'
 import AuthGuard from 'src/components/auth/AuthGuard'
 import FallbackSpinner from 'src/components/fall-back'
-import { SettingsConsumer, SettingsProvider } from 'src/contexts/SettingsContext'
 import AclGuard from 'src/components/auth/AclGuard'
 import ReactHotToast from 'src/components/react-hot-toast'
+
+//**hooks */
 import { useSettings } from 'src/hooks/useSettings'
+
+//**theme */
 import ThemeComponent from 'src/theme/ThemeComponent'
+
+//**layouts */
 import UserLayout from 'src/view/layouts/UserLayout'
+
+//** Context */
+import { SettingsConsumer, SettingsProvider } from 'src/contexts/SettingsContext'
+
+
+//axios instance
+import { AxiosInterceptor } from 'src/contexts/helpers/axios'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
@@ -116,6 +131,7 @@ export default function App(props: ExtendedAppProps) {
       </Head>
 
       <AuthProvider>
+        <AxiosInterceptor>
         <SettingsProvider {...(setConfig ? { pageSettings: setConfig() } : {})}>
           <SettingsConsumer>
             {({ settings }) => {
@@ -134,6 +150,7 @@ export default function App(props: ExtendedAppProps) {
             }}
           </SettingsConsumer>
         </SettingsProvider>
+      </AxiosInterceptor>
       </AuthProvider>
     </Provider>
   )

@@ -1,5 +1,5 @@
 
-const BASE_URL = "http://localhost:3001/api"
+export const BASE_URL = process.env.NEXT_PULIC_API_HOST
 export const CONFIG_API = {
     AUTH:{
         INDEX:`${BASE_URL}/auth`,
