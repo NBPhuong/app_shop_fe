@@ -17,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 //**Component
-import IconifyIcon from '../Icon';
+import IconifyIcon from '../../../../components/Icon';
 
 //** HOOKS */
 import { useAuth } from 'src/hooks/useAuth';

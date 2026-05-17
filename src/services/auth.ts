@@ -1,4 +1,3 @@
-import axios from "axios"
 
 //**Config */
 import { CONFIG_API } from "src/configs/api"
