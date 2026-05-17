@@ -41,6 +41,12 @@ import { useAuth } from 'src/hooks/useAuth';
 
 
 type TProps = {}
+
+type TDefaultValue = {
+  email: string
+  password: string
+}
+
 const LoginPage: NextPage<TProps> = () => {
   // State
   const [showPassword, setShowPassword] = useState(false)
@@ -49,7 +55,7 @@ const LoginPage: NextPage<TProps> = () => {
   //Theme
   const theme = useTheme()
 
- // ** context
+  // ** context
   const { login } = useAuth()
 
   const schema = yup.object()
@@ -57,16 +63,20 @@ const LoginPage: NextPage<TProps> = () => {
       email: yup.string().required("This is required").matches(EMAIL_REG, "Rules_email"),
       password: yup.string().required("This is required").matches(PASSWORD_REG, "Rules_password"),
     })
+
+  const defaultValues: TDefaultValue = {
+
+    "email": "admin@gmail.com",
+    "password": "123456789Kha@"
+  };
+
   const {
     handleSubmit,
     control,
     formState: { errors }
 
   } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues,
     mode: "onBlur",
     resolver: yupResolver(schema),
   })

@@ -11,10 +11,10 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 
 //*Component
 import IconifyIcon from 'src/components/Icon';
+import UserDropdown from 'src/components/user-dropdown';
 
 type TProps = {
   open: boolean;
@@ -81,12 +81,12 @@ const HorizontalLayout: NextPage<TProps> = ({ open, toggleDrawer, isHideMenu }) 
         >
           Dashboard
         </Typography>
-        <IconButton color="inherit">
+        <UserDropdown/>
+        {/* <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
           <IconifyIcon icon="carbon:notification" />
-
           </Badge>
-        </IconButton>
+        </IconButton> */}
       </Toolbar>
     </AppBar>
   );
